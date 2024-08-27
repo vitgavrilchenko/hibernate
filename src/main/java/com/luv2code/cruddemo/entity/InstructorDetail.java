@@ -2,6 +2,8 @@ package com.luv2code.cruddemo.entity;
 
 import jakarta.persistence.*;
 
+import static jakarta.persistence.CascadeType.*;
+
 @Entity
 @Table(name = "instructor_detail")
 public class InstructorDetail {
@@ -16,6 +18,9 @@ public class InstructorDetail {
 
     @Column(name = "hobby")
     private String hobby;
+
+    @OneToOne(mappedBy = "instructorDetail", cascade = {DETACH, MERGE, PERSIST, REFRESH})
+    private Instructor instructor;
 
     public InstructorDetail() {
     }
@@ -47,6 +52,14 @@ public class InstructorDetail {
 
     public void setHobby(String hobby) {
         this.hobby = hobby;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(Instructor instructor) {
+        this.instructor = instructor;
     }
 
     @Override
