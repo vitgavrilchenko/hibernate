@@ -29,7 +29,7 @@ public class Instructor {
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetail instructorDetail;
 
-    @OneToMany(mappedBy = "instructor", cascade = {DETACH, MERGE, REFRESH, PERSIST})
+    @OneToMany(mappedBy = "instructor", cascade = {DETACH, MERGE, REFRESH, PERSIST}, fetch = FetchType.LAZY)
     private List<Course> courses;
 
     public Instructor() {
