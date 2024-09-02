@@ -21,31 +21,7 @@ public class CruddemoApplication {
 
     @Bean
     public CommandLineRunner commandLineRunner(AppDAO appDAO) {
-        return _ -> //createInstructor(appDAO);
-                //findInstructor(appDAO)
-                //deleteInstructor(appDAO);
-                //findInstructorDetail(appDAO);
-                //deleteInstructorDetail(appDAO);
-
-                //createInstructorWithCources(appDAO);
-
-                //findInstructorWithCourses(appDAO);
-
-                //findCoursesForInstructor(appDAO);
-
-                //findInstructorWithCoursesJoinFetch(appDAO);
-
-                //updateInstructor(appDAO);
-
-                //updateCourse(appDAO);
-
-                //deleteCourse(appDAO);
-
-                //createCourseAndReviews(appDAO);
-
-                //retrieveCourseAndReviews(appDAO);
-
-                deleteCourseAndReviews(appDAO);
+        return _ -> deleteCourseAndReviews(appDAO);
     }
 
     private void deleteCourseAndReviews(AppDAO appDAO) {
