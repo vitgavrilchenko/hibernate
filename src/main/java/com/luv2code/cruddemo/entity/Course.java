@@ -2,6 +2,9 @@ package com.luv2code.cruddemo.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static jakarta.persistence.CascadeType.*;
 
 @Entity
@@ -16,6 +19,18 @@ public class Course {
     @ManyToOne(cascade = {PERSIST, MERGE, DETACH, REFRESH})
     @JoinColumn(name = "instructor_id")
     private Instructor instructor;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = ALL)
+    @JoinColumn(name = "course_id")
+    private List<Review> reviews;
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
 
     public Course(String title) {
         this.title = title;
@@ -48,11 +63,21 @@ public class Course {
         this.instructor = instructor;
     }
 
+    public void addReview(Review theReview) {
+        if (reviews == null) {
+            reviews = new ArrayList<>();
+        }
+
+        reviews.add(theReview);
+    }
+
     @Override
     public String toString() {
         return "Course{" +
-                "title='" + title + '\'' +
-                ", id=" + id +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", instructor=" + instructor +
+                ", reviews=" + reviews +
                 '}';
     }
 }
